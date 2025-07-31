@@ -16,25 +16,24 @@ def assert_illegal_argument(game, guess_number):
 
 @pytest.mark.parametrize("invalid_input", [None, "12", "1234", "12s", "121"])
 def test_exception_when_invalid_input(game, invalid_input):
-    assert_illegal_argument(game,invalid_input)
+    assert_illegal_argument(game, invalid_input)
 
 
+def assert_matched_number(result, solved, strikes, balls):
+    assert result is not None
+    assert result._solved == solved
+    assert result._strikes == strikes
+    assert result._balls == balls
 
 
 def test_return_solved_result_if_matched_number(game):
     game.question = "123"
-    result : GameResult = game.guess("123")
 
-    assert result is not None
-    assert result._solved == True
-    assert result._strikes == 3
-    assert result._balls == 0
+    assert_matched_number(game.guess("123"), True, 3, 0)
+
 
 def test_return_solved_result_if_unmatched_number(game):
     game.question = "123"
-    result : GameResult = game.guess("456")
+    result: GameResult = game.guess("456")
 
-    assert result is not None
-    assert result._solved == False
-    assert result._strikes == 0
-    assert result._balls == 0
+    assert_matched_number(result, False, 0, 0)
