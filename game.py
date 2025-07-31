@@ -20,6 +20,10 @@ class Game:
         if guess_number == self._question:
             return GameResult(True, 3, 0)
 
+        if guess_number[:1] == self._question[:1]:
+            return GameResult(False, 2, 0)
+
+
 
         return GameResult(False, 0, 0)
 
