@@ -20,8 +20,10 @@ class Game:
         if guess_number == self._question:
             return GameResult(True, 3, 0)
 
-        if guess_number[:1] == self._question[:1]:
-            return GameResult(False, 2, 0)
+        strike_cnt = 0
+        for i in range(3):
+            if guess_number[i] == self._question[i] : strike_cnt +=1
+        return GameResult(False, strike_cnt, 0)
 
 
 
