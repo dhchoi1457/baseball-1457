@@ -28,19 +28,22 @@ def assert_matched_number(result, solved, strikes, balls):
 
 def test_return_solved_result_if_matched_number(game):
     game.question = "123"
-
     assert_matched_number(game.guess("123"), True, 3, 0)
 
 
 def test_return_solved_result_if_unmatched_number(game):
     game.question = "123"
     result: GameResult = game.guess("456")
-
     assert_matched_number(result, False, 0, 0)
 
 
-def test_return_solved_result_if_2strike(game):
+def test_return_solved_result_if_2strikes(game):
     game.question = "123"
     result: GameResult = game.guess("124")
-
     assert_matched_number(result, False, 2, 0)
+
+
+def test_return_solved_result_if_1strikes_2ball(game):
+    game.question = "123"
+    result: GameResult = game.guess("321")
+    assert_matched_number(result, False, 1, 2)
