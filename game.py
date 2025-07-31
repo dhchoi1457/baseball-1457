@@ -20,21 +20,16 @@ class Game:
         if guess_number == self._question:
             return GameResult(True, 3, 0)
 
-        strike_cnt = 0
-        ball_cnt = 0
+        strikes = 0
+        balls = 0
+
         for i in range(3):
-            if guess_number[i] == self._question[i] :
-                strike_cnt +=1
+            if guess_number[i] == self._question[i]:
+                strikes += 1
                 continue
-            if guess_number[i] in self._question :
-                ball_cnt += 1
-        return GameResult(False, strike_cnt, ball_cnt)
-
-
-
-
-        return GameResult(False, 0, 0)
-
+            if guess_number[i] in self._question:
+                balls += 1
+        return GameResult(False, strikes, balls)
 
     def assert_illegal_value(self, guess_number):
         if guess_number is None:
